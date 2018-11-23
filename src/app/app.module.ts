@@ -6,24 +6,39 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { SingleViewPage } from '../pages/single-view/single-view';
+import { NewViewPage } from '../pages/new-view/new-view';
+import { SetCoordinatesPage } from '../pages/set-coordinates/set-coordinates';
+import { NatureViewService } from '../services/natureView.service';
+import { AgmCoreModule } from '@agm/core';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    SingleViewPage,
+    NewViewPage,
+    SetCoordinatesPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AgmCoreModule.forRoot({ apiKey: 'AIzaSyD0LxBbhkD6PONzDZhvU_nV9FfcoVt0Uzo' })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    SingleViewPage,
+    NewViewPage,
+    SetCoordinatesPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    NatureViewService,
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
