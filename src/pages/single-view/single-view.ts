@@ -1,24 +1,21 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the SingleViewPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Component, OnInit } from '@angular/core';
+import { NavParams } from 'ionic-angular';
+import { NatureView } from '../../models/NatureView.model';
 
 @Component({
   selector: 'page-single-view',
   templateUrl: 'single-view.html',
 })
-export class SingleViewPage {
+export class SingleViewPage implements OnInit
+{
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  natureView: NatureView;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SingleViewPage');
+  constructor(public navParams: NavParams) { }
+
+  ngOnInit()
+  {
+    this.natureView = this.navParams.get('natureView');
   }
 
 }

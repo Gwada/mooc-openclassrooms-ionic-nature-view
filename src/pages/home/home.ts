@@ -3,6 +3,8 @@ import { NatureView } from '../../models/NatureView.model';
 import { Subscription } from 'rxjs';
 import { NatureViewService } from '../../services/natureView.service';
 import { NewViewPage } from '../new-view/new-view';
+import { NavController } from 'ionic-angular';
+import { SingleViewPage } from '../single-view/single-view';
 
 @Component({
   selector: 'page-home',
@@ -15,18 +17,26 @@ export class HomePage implements OnInit, OnDestroy
   natureViewListSubscription: Subscription;
   newViewPage = NewViewPage;
 
-  constructor(private natureViewService: NatureViewService) {}
+  constructor(private natureViewService: NatureViewService,
+              private navCtrl: NavController) {}
 
-  ngOnInit() {
+  ngOnInit()
+  {
     this.natureViewListSubscription = this.natureViewService.natureviewList$.subscribe(
       (natureViews: NatureView[]) => {
         this.natureViewList = natureViews;
       }
     );
-    this.natureViewService.emitList();
+    this.natureViewService.fetchList();
   }
 
-  ngOnDestroy() {
+  onLoadNatureView(view: NatureView)
+  {
+    this.navCtrl.push(SingleViewPage, {natureView: view});
+  }
+
+  ngOnDestroy()
+  {
     this.natureViewListSubscription.unsubscribe();
   }
 
