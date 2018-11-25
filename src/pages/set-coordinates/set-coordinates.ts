@@ -46,11 +46,8 @@ export class SetCoordinatesPage implements OnInit
 
   onLocateMe()
   {
-    let loader = this.loadingCtrl.create(
-      {
-        content: 'Recherche de votre position...'
-      }
-    );
+    let loader = this.loadingCtrl.create({ content: 'Recherche de votre position...' });
+
     loader.present();
     this.geolocation.getCurrentPosition().then(
       (resp) => {
@@ -62,7 +59,8 @@ export class SetCoordinatesPage implements OnInit
           longitude: resp.coords.longitude,
           draggable: true
         };
-      }, (error) => {
+      },
+      (error) => {
         loader.dismiss();
         this.toastCtrl.create(
           {

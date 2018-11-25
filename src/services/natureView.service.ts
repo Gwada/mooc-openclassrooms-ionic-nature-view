@@ -33,6 +33,9 @@ export class NatureViewService
       (list) => {
         list && list.length ? this.natureViewList = list.slice() : 0;
         this.emitList();
+      },
+      (reason: any) => {
+        console.log(`erreur lors de la recuperation des media : ${reason}`)
       }
     );
   }

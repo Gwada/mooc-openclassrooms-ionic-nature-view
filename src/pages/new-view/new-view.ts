@@ -69,7 +69,8 @@ export class NewViewPage implements OnInit
             }
           )
         }
-      }, (error) => {
+      },
+      (error) => {
         this.toastCtrl.create(
           {
             message: error.message,
